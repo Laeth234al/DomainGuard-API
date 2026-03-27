@@ -19,7 +19,7 @@ describe("TLD Api", () => {
     userToken = generateTestToken("user");
     //
     setDetector(
-      new SpamDetector(new Trie(), new Set<string>(), new Set<string>())
+      new SpamDetector(new Trie(), new Set<string>(), new Set<string>()),
     );
   });
   //
@@ -165,7 +165,7 @@ describe("TLD Api", () => {
       const res = await request(app)
         .get("/api/tld/check")
         .set("Authorization", `Bearer ${adminToken}`)
-        .send({
+        .query({
           domain: "click.xyz",
         });
       //
@@ -181,7 +181,7 @@ describe("TLD Api", () => {
       const res = await request(app)
         .get("/api/tld/check")
         .set("Authorization", `Bearer ${userToken}`)
-        .send({
+        .query({
           domain: "click.xyz",
         });
       //
@@ -197,7 +197,7 @@ describe("TLD Api", () => {
       const res = await request(app)
         .get("/api/tld/check")
         .set("Authorization", `Bearer ${userToken}`)
-        .send({
+        .query({
           domain: "123",
         });
       //
@@ -212,7 +212,7 @@ describe("TLD Api", () => {
       const res = await request(app)
         .get("/api/tld/check")
         .set("Authorization", `Bearer ${userToken}`)
-        .send({
+        .query({
           domain: false,
         });
       //
@@ -227,7 +227,7 @@ describe("TLD Api", () => {
       const res = await request(app)
         .get("/api/tld/check")
         .set("Authorization", `Bearer ${userToken}`)
-        .send({
+        .query({
           domain: ["1", null, undefined, false, 0, 2, 3],
         });
       //
@@ -242,7 +242,7 @@ describe("TLD Api", () => {
       const res = await request(app)
         .get("/api/tld/check")
         .set("Authorization", `Bearer ${userToken}`)
-        .send({
+        .query({
           domain: undefined,
         });
       //
@@ -257,7 +257,7 @@ describe("TLD Api", () => {
       const res = await request(app)
         .get("/api/tld/check")
         .set("Authorization", `Bearer ${userToken}`)
-        .send({
+        .query({
           domain: null,
         });
       //
@@ -270,7 +270,7 @@ describe("TLD Api", () => {
 
     it("can not check TLD without token", async () => {
       //
-      const res = await request(app).get("/api/tld/check").send({
+      const res = await request(app).get("/api/tld/check").query({
         domain: "click.xyz",
       });
       //
@@ -284,7 +284,7 @@ describe("TLD Api", () => {
       const res = await request(app)
         .get("/api/tld/check")
         .set("Authorization", `Bearer ${adminToken}z`) // added z
-        .send({
+        .query({
           domain: "click.xyz",
         });
       //
