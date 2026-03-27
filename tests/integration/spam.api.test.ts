@@ -19,7 +19,7 @@ describe("Spam Api", () => {
     userToken = generateTestToken("user");
     //
     setDetector(
-      new SpamDetector(new Trie(), new Set<string>(), new Set<string>())
+      new SpamDetector(new Trie(), new Set<string>(), new Set<string>()),
     );
   });
   //
@@ -167,7 +167,7 @@ describe("Spam Api", () => {
       const res = await request(app)
         .get("/api/spam/check")
         .set("Authorization", `Bearer ${adminToken}`)
-        .send({
+        .query({
           domain: "click.xyz",
         });
       //
@@ -183,7 +183,7 @@ describe("Spam Api", () => {
       const res = await request(app)
         .get("/api/spam/check")
         .set("Authorization", `Bearer ${userToken}`)
-        .send({
+        .query({
           domain: "click.xyz",
         });
       //
@@ -199,7 +199,7 @@ describe("Spam Api", () => {
       const res = await request(app)
         .get("/api/spam/check")
         .set("Authorization", `Bearer ${userToken}`)
-        .send({
+        .query({
           domain: "",
         });
       //
@@ -214,7 +214,7 @@ describe("Spam Api", () => {
       const res = await request(app)
         .get("/api/spam/check")
         .set("Authorization", `Bearer ${userToken}`)
-        .send({
+        .query({
           domain: false,
         });
       //
@@ -229,7 +229,7 @@ describe("Spam Api", () => {
       const res = await request(app)
         .get("/api/spam/check")
         .set("Authorization", `Bearer ${userToken}`)
-        .send({
+        .query({
           domain: ["1", null, undefined, false, 0, 2, 3],
         });
       //
@@ -244,7 +244,7 @@ describe("Spam Api", () => {
       const res = await request(app)
         .get("/api/spam/check")
         .set("Authorization", `Bearer ${userToken}`)
-        .send({
+        .query({
           domain: undefined,
         });
       //
@@ -259,7 +259,7 @@ describe("Spam Api", () => {
       const res = await request(app)
         .get("/api/spam/check")
         .set("Authorization", `Bearer ${userToken}`)
-        .send({
+        .query({
           domain: null,
         });
       //
@@ -272,7 +272,7 @@ describe("Spam Api", () => {
 
     it("can not check spam domain without token", async () => {
       //
-      const res = await request(app).get("/api/spam/check").send({
+      const res = await request(app).get("/api/spam/check").query({
         domain: "click.xyz",
       });
       //
@@ -286,7 +286,7 @@ describe("Spam Api", () => {
       const res = await request(app)
         .get("/api/spam/check")
         .set("Authorization", `Bearer ${adminToken}z`) // added z
-        .send({
+        .query({
           domain: "click.xyz",
         });
       //
