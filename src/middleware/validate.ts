@@ -3,7 +3,7 @@ import { ZodSchema } from "zod";
 
 export function validate(
   schema: ZodSchema,
-  source: "body" | "query" | "params"
+  source: "body" | "query" | "params",
 ) {
   return (req: Request, res: Response, next: NextFunction) => {
     //
@@ -19,7 +19,7 @@ export function validate(
       });
     }
     //
-    req[source] = result.data;
+    Object.assign(req[source], result.data);
     //
     next();
   };

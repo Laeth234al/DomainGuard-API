@@ -34,6 +34,9 @@ Motivation: demonstrate a clean, testable backend with a real data-structure use
   - MongoDB isolated via `mongodb-memory-server`
 - **Logging**
   - Winston logger (silent in `test` environment)
+- **API Documentation**
+  - Swagger UI available at:
+    `/api-docs`
 
 ## Tech Stack
 
