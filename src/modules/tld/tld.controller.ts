@@ -7,7 +7,7 @@ const service = new TLDService();
 export async function addTLD(
   req: AuthRequest,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) {
   try {
     //
@@ -29,7 +29,7 @@ export async function addTLD(
 export async function deleteTLD(
   req: AuthRequest,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) {
   try {
     //
@@ -51,13 +51,13 @@ export async function deleteTLD(
 export async function checkTLD(
   req: AuthRequest,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) {
   try {
     //
-    const { domain } = req.body;
+    const { domain } = req.query;
     //
-    const result = await service.check(domain);
+    const result = await service.check(domain as string);
     //
     return res.status(200).json(result);
     //
