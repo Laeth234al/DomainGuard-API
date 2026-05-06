@@ -284,7 +284,7 @@ Contributions are welcome:
 
 ## License
 
-This project is currently unlicensed (default: `ISC` in `package.json`). Add a `LICENSE` file if you want to publish under a specific license (MIT/Apache-2.0/etc.).
+MIT License
 
 ## Author / Contact
 
